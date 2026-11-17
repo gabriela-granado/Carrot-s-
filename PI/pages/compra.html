@@ -8,17 +8,19 @@
     <title>Como comprar | Carrot's</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
-
-<body>
+<body class="layout-compra">
 
     <header>
-        <nav class="navbar">
+        <nav class="navbar navbar-compra">
             <figure>
                 <a href="index.html">
                     <img src="../imagem/Logo.png" alt="Logo da Carrot's">
                 </a>
             </figure>
-            <a class="btn btn-voltar" href="index.html">Voltar para tela inicial</a>
+            <a class="btn btn-voltar" href="index.html">
+                <span class="texto-voltar-desktop">Voltar para tela inicial</span>
+                <span class="texto-voltar-mobile">← Início</span>
+            </a>
         </nav>
     </header>
 
@@ -27,14 +29,18 @@
             <p class="etiqueta">Carrot's</p>
             <h1>Peça seu bolo de cenoura</h1>
 
-            <img class="imagem-compra" src="../imagem/bolo-cenoura.png" alt="Bolo de cenoura com cobertura de chocolate">
+            <figure class="compra-imagem-box">
+                <img class="imagem-compra" src="../imagem/bolo-cenoura.png" alt="Bolo de cenoura com cobertura de chocolate">
+            </figure>
 
             <p class="texto-compra">
-                Quer saber mais sobre o produto ou combinar um pedido? <br>
+                Quer saber mais sobre o produto ou combinar um pedido?
                 Entre em contato pelo WhatsApp para consultar disponibilidade, valores e maiores informações.
             </p>
 
-            <a class="btn btn-default" href="https://wa.me/5518996057578" target="_blank" rel="noopener noreferrer">Falar pelo WhatsApp</a>
+            <a class="btn btn-default btn-compra-whats" href="https://wa.me/5518996057578" target="_blank" rel="noopener noreferrer">
+                Falar pelo WhatsApp
+            </a>
         </div>
     </main>
 
@@ -45,5 +51,4 @@
 
     <script src="../js/script.js"></script>
 </body>
-
 </html>
