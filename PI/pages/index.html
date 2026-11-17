@@ -282,14 +282,14 @@
                 <p>Preencha os campos abaixo para enviar sua mensagem diretamente para o nosso e-mail.</p>
             </div>
 
-            <form id="form-contato" class="formulario" action="https://formsubmit.co/ajax/carrots.assis1970@gmail.com" method="POST">
-                <input type="hidden" name="_subject" value="Novo contato pelo site Carrot's">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_template" value="table">
+            <form id="form-contato" class="formulario">
+                <input type="hidden" name="access_key" value="85b39d3c-b07b-4535-94dc-d7f24b919a2b">
+                <input type="hidden" name="subject" value="Novo contato pelo site Carrot's">
+                <input type="hidden" name="from_name" value="Site Carrot's">
 
                 <div class="campo">
                     <label for="nome-contato">Nome</label>
-                    <input type="text" id="nome-contato" name="nome" required minlength="2" placeholder="Seu nome">
+                    <input type="text" id="nome-contato" name="name" required minlength="2" placeholder="Seu nome">
                 </div>
 
                 <div class="campo">
@@ -310,14 +310,14 @@
 
                 <div class="campo">
                     <label for="mensagem-contato">Mensagem</label>
-                    <textarea id="mensagem-contato" name="mensagem" rows="4" required minlength="10" maxlength="600" placeholder="Como podemos ajudar?"></textarea>
+                    <textarea id="mensagem-contato" name="message" rows="4" required minlength="10" maxlength="600" placeholder="Como podemos ajudar?"></textarea>
                 </div>
 
                 <button class="btn btn-default" id="btn-enviar-contato" type="submit">Enviar mensagem</button>
                 <p class="mensagem-formulario" id="mensagem-contato-status" role="status"></p>
             </form>
 
-                <div class="contato-links">
+            <div class="contato-links">
                 <a class="link-contato" href="https://www.instagram.com/carrots.1970?exln=czljOGZjdWp0MTlv" target="_blank" rel="noopener noreferrer">
                     <img class="link-icone" src="../imagem/iconInstagram.png" alt="">
                     Visite nosso Instagram

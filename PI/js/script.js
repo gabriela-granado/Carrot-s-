@@ -65,11 +65,10 @@ if (fotos.length > 0 && botaoAnterior && botaoProxima) {
     }
 }
 
-// Envio automático do formulário de contato por E-mail
+// Validação e envio automático do formulário de contato via Web3Forms
 const formularioContato = document.getElementById("form-contato");
 const mensagemContatoStatus = document.getElementById("mensagem-contato-status");
 const botaoEnviarContato = document.getElementById("btn-enviar-contato");
-const emailDestino = "gabrielaamgv@gmail.com";
 
 if (formularioContato) {
     formularioContato.addEventListener("submit", async function (evento) {
@@ -81,42 +80,41 @@ if (formularioContato) {
         }
 
         const nome = document.getElementById("nome-contato").value.trim();
-        const email = document.getElementById("email-contato").value.trim();
-        const assunto = document.getElementById("assunto-contato").value;
         const mensagem = document.getElementById("mensagem-contato").value.trim();
+
+        if (nome.length < 2 || mensagem.length < 10) {
+            mensagemContatoStatus.textContent = "Confira o nome e escreva uma mensagem com pelo menos 10 caracteres.";
+            return;
+        }
 
         botaoEnviarContato.disabled = true;
         botaoEnviarContato.textContent = "Enviando...";
         mensagemContatoStatus.textContent = "Enviando sua mensagem, aguarde...";
 
         try {
-            const dadosForm = new FormData();
-            dadosForm.append("Nome", nome);
-            dadosForm.append("Email", email);
-            dadosForm.append("Assunto", assunto);
-            dadosForm.append("Mensagem", mensagem);
-            dadosForm.append("_subject", "[Contato Site Carrot's] " + assunto + " - " + nome);
-            dadosForm.append("_captcha", "false");
-            dadosForm.append("_template", "table");
+            const dadosForm = new FormData(formularioContato);
+            const objetoDados = Object.fromEntries(dadosForm);
+            const jsonDados = JSON.stringify(objetoDados);
 
-            const resposta = await fetch("https://formsubmit.co/ajax/" + emailDestino, {
+            const resposta = await fetch("https://api.web3forms.com/submit", {
                 method: "POST",
                 headers: {
+                    "Content-Type": "application/json",
                     "Accept": "application/json"
                 },
-                body: dadosForm
+                body: jsonDados
             });
 
             const resultado = await resposta.json();
 
-            if (resposta.ok) {
+            if (resultado.success) {
                 mensagemContatoStatus.textContent = "Mensagem enviada com sucesso! Em breve entraremos em contato.";
                 formularioContato.reset();
             } else {
-                mensagemContatoStatus.textContent = "Aviso do servidor: " + (resultado.message || "Verifique sua caixa de entrada para ativar o formulário.");
+                mensagemContatoStatus.textContent = "Não foi possível enviar: " + (resultado.message || "verifique a chave configurada.");
             }
         } catch (erro) {
-            mensagemContatoStatus.textContent = "Erro de conexão ao enviar a mensagem.";
+            mensagemContatoStatus.textContent = "Erro de conexão ao enviar a mensagem. Tente novamente.";
         } finally {
             botaoEnviarContato.disabled = false;
             botaoEnviarContato.textContent = "Enviar mensagem";
