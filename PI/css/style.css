@@ -527,3 +527,20 @@ body.layout-compra {
         height: 260px;
     }
 }
+
+header .navbar figure a {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+header .navbar figure img {
+    max-height: 54px;
+    width: auto;
+    object-fit: contain;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
